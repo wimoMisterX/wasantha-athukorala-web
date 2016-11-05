@@ -1,0 +1,30 @@
+{
+  "name": "wimo-mister-x",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:styl": "stylus -I node_modules assets/styl/main.styl --out dist/css",
+    "build:msx": "msx -x jsx --no-precompile assets/js/ assets/js/",
+    "build:js": "npm run build:msx && browserify assets/js/main.js -o dist/js/main.js",
+    "build": "npm run build:js && npm run build:styl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wimoMisterX/wasantha-athukorala-web.git"
+  },
+  "author": "wimoMisterX",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wimoMisterX/wasantha-athukorala-web/issues"
+  },
+  "homepage": "https://github.com/wimoMisterX/wasantha-athukorala-web#readme",
+  "dependencies": {
+    "browserify": "^13.1.1",
+    "lodash": "^4.16.6",
+    "mithril": "^0.2.5",
+    "msx": "^0.4.1",
+    "spserver": "^0.1.3",
+    "stylus": "^0.54.5"
+  }
+}
