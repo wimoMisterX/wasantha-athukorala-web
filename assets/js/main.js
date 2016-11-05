@@ -5,12 +5,10 @@ var menu = require('./menu.js');
 
 m.route.mode  = "pathname";
 m.route(document.getElementById("content"), "/", {
-    "/": menu.Menu,
+    "/": services.MyComponent,
     "/services": services.MyComponent,
     "/contact": contact.ContactUs,
 });
 
-var menus = document.getElementsByClassName("menu-items");
-for (var i=0, im=menus.length; im>i; i++){
-    m.mount(menus[i], menu.Menu);
-}
+m.mount(document.getElementById("header-menu-items"), menu.header_menu);
+m.mount(document.getElementById("footer-menu-items"), menu.footer_menu);

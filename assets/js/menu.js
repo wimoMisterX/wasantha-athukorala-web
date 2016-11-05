@@ -1,25 +1,38 @@
 var m = require('mithril');
 
-function menu_item(name, route){
+function menu_item(name, route, position){
     var is_current = (m.route() === route);
     var click = function(){
         m.route(route);
     };
-    return m("a" + (is_current ? ".item .active" : ".item"), {onclick: click}, name);
+    return position === "header" ? m("li", m("a" + (is_current ? ".is-active" : ""), {onclick: click}, name)) : m('a', {onclick: click}, name);
 }
 
-var Menu = {
+var menu_item_set = [
+    {"label": "Home", "path": "/"},
+    {"label": "Services", "path": "/services"},
+    {"label": "Our Work", "path": "/our-work"},
+    {"label": "About Us", "path": "/about-us"},
+    {"label": "Contact Us", "path": "/contact"},
+];
+
+var header_menu = {
     view: function(){
-        return [
-            menu_item("Home", "/"),
-            menu_item("Services", "/services"),
-            menu_item("Our Work", "/our-work"),
-            menu_item("About Us", "/about-us"),
-            menu_item("Contact", "/contact"),
-        ];
+        return menu_item_set.map(function(item){
+            return menu_item(item.label, item.path, "header");
+        });
     }
-}
+};
+
+var footer_menu = {
+    view: function(){
+        return menu_item_set.map(function(item){
+            return menu_item(item.label, item.path, "footer")
+        })
+    }
+};
 
 module.exports = {
-    Menu: Menu
+    header_menu: header_menu,
+    footer_menu: footer_menu,
 };
