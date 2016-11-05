@@ -7,7 +7,8 @@
     "build:styl": "stylus -I node_modules assets/styl/main.styl --out dist/css",
     "build:msx": "msx -x jsx --no-precompile assets/js/ assets/js/",
     "build:js": "npm run build:msx && browserify assets/js/main.js -o dist/js/main.js",
-    "build": "npm run build:js && npm run build:styl"
+    "build": "npm run build:js && npm run build:styl",
+    "server": "spserver -I node_modules -f assets/index.html -s dist -p 3000"
   },
   "repository": {
     "type": "git",
