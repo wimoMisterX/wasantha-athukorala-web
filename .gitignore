@@ -38,3 +38,6 @@ jspm_packages
 
 # project files
 dist
+
+# vim swp file
+.*.sw*

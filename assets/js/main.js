@@ -1,11 +1,16 @@
 var m = require('mithril');
+var contact = require('./contact.js');
+var services = require('./services.js');
+var menu = require('./menu.js');
 
-function layout() {
-    return m("div", {class:"container"}, [
-        m("div", {id:"header"}, "This is the header"),
-        m("main", {id:"content"}, "This is the content"),
-        m("footer", {id:"footer"}, "This is the footer")
-    ]);
+m.route.mode  = "pathname";
+m.route(document.getElementById("content"), "/", {
+    "/": menu.Menu,
+    "/services": services.MyComponent,
+    "/contact": contact.ContactUs,
+});
+
+var menus = document.getElementsByClassName("menu-items");
+for (var i=0, im=menus.length; im>i; i++){
+    m.mount(menus[i], menu.Menu);
 }
-
-m.render(document.body, layout());
