@@ -48,6 +48,8 @@ html, body {
 #main {
     overflow: auto;
     padding-bottom: 180px; /* must be same height as the footer */
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 body:before {
     content: "";
