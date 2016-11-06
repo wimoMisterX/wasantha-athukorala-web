@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build:msx": "msx -x jsx --no-precompile assets/js/ assets/js/",
-    "build:js": "npm run build:msx && browserify assets/js/main.js -o dist/js/main.js",
-    "build": "npm run build:js",
-    "watch:jsx": "msx --watch -x jsx --no-precompile assets/js/ assets/js/",
-    "server": "spserver -I node_modules -f assets/index.html -s dist -p 3000"
+    "build:js": "browserify assets/js/main.js -o dist/js/main.js",
+    "build": "npm run build:msx && npm run build:js",
+    "watch:build": "msx --watch -x jsx --no-precompile assets/js/ assets/js/ && npm run build:js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/wimoMisterX/wasantha-athukorala-web#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "browserify": "^13.1.1",
+    "express": "^4.14.0",
     "lodash": "^4.16.6",
     "mithril": "^0.2.5",
+    "morgan": "^1.7.0",
     "msx": "^0.4.1",
-    "spserver": "^0.1.3",
-    "stylus": "^0.54.5"
+    "nodemailer": "^2.6.4"
   }
 }

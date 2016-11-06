@@ -1,5 +1,19 @@
 var m = require('mithril');
 
+var requestWithFeedback = function(args){
+    var data = m.prop();
+    args.background = true; // adding do request in background
+    m.request(args).then(data).then(function(){
+        m.redraw();
+    });
+    return {
+        data: data,
+        ready: function(){
+            return !!data();
+        }
+    }
+};
+
 var ContactUs = {
     controller: function(){
         var ctrl = this;
@@ -9,16 +23,26 @@ var ContactUs = {
             contact_num: '',
             message: ''
         };
-        ctrl.err = '';
+        ctrl.post_result = null;
         ctrl.post = function(e){
             e.preventDefault();
-            ctrl.success = 'Done !!';
+            ctrl.post_result = requestWithFeedback({method: "POST", url:"/contact/send-mail", data:{
+                name: ctrl.user.name,
+                contact_num: ctrl.user.contact_num,
+                email: ctrl.user.email,
+                message: ctrl.user.message
+            }});
         };
     },
     view: function(ctrl){
         return m('#Auth', [
             m('p.lead.text-center', 'Feel the need to contact us?'),
             m('form', {onsubmit: ctrl.post}, [
+                (ctrl.post_result !== null && ctrl.post_result.ready()) ? m('div.row',
+                    m('div.medium-6.medium-centered.columns',
+                        m('.callout.' + ctrl.post_result.data().type, m('p', ctrl.post_result.data().message))
+                    )
+                ) : '',
                 m('div.row',
                     m('div.medium-6.medium-centered.columns',
                         m('label', [
@@ -71,11 +95,12 @@ var ContactUs = {
                         ])
                     )
                 ),
-                (ctrl.err) ? m('p', ctrl.err) : '',
-                (ctrl.success) ? m('p', ctrl.success) : '',
                 m('div.row',
                     m('div.medium-6.medium-centered.text-center.columns',
-                        m('button.button[type="submit"]', 'Submit')
+                        m('button.button[type="submit"]', [
+                            (ctrl.post_result !== null && !ctrl.post_result.ready()) ? m('i.fa fa-spinner fa-spin fa-fw', '') : '',
+                            m('span', 'Submit')
+                        ])
                     )
                 ),
             ])
