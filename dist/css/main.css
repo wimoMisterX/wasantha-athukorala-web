@@ -47,7 +47,7 @@ html, body {
 }
 #main {
     overflow: auto;
-    padding-bottom: 180px; /* must be same height as the footer */
+    padding-bottom: 100px; /* must be same height as the footer */
     margin-top: 3em;
     margin-bottom: 3rem;
 }
@@ -60,31 +60,18 @@ body:before {
 }
 .footer {
     background-color: #292c2f;
-    text-align: center;
     font-size: 1.2rem;
     position: relative;
-    margin-top: -180px; /* negative value of footer height */
-    height: 180px;
+    margin-top: -100px; /* negative value of footer height */
     clear: both;
-    padding-top: 1em;
+    padding: 1.35em 0;
 }
-.links {
-    padding: 2.5em;
-}
+
 .footer .links a {
     list-style: none;
-    font-weight: bold;
     color: #ffffff;
-    padding: 1rem 0 1rem;
     margin: 0;
-}
-.footer .links a::after {
-    content: "•";
-    padding: 0 0.4rem 0 0.8rem;
-}
-.footer .links a:last-child::after {
-    content: "";
-    padding: 0 0.4rem 0 0.8rem;
+    padding-right: 1em;
 }
 
 .fade-in {
@@ -116,4 +103,9 @@ body:before {
 
 .hidden-table tr:nth-of-type(even) {
     background-color: transparent !important;
+}
+
+#copyright_notice{
+    color: #ffffff;
+    text-align: right;
 }

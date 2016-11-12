@@ -139,8 +139,8 @@ var ContactUs = {
                 m('div.row',
                     m('div.text-center',
                         m('button.button', {onclick: ctrl.save}, [
-                            (ctrl.data.loading) ? m('i.fa fa-spinner.fa-spin.fa-fw', '') : '',
-                            m('span', 'Submit')
+                            (ctrl.data.loading) ? m('i.fa fa-spinner.fa-spin.fa-lg', '') : '',
+                            m('span', ' Submit')
                         ])
                     )
                 ),
@@ -155,19 +155,19 @@ var ContactUs = {
                     m('table.hidden-table',
                         m('tbody', [
                             m('tr', [
-                                m('td', m('i.fa.fa-map-marker.fa-3x')),
+                                m('td', m('i.fa.fa-map-marker.fa-2x')),
                                 m('td.lead', ['"Wasantha", Thotupala Road', m('br'), 'Pitigala, Sri Lanka'])
                             ]),
                             m('tr', [
-                                m('td', m('i.fa.fa-phone.fa-3x')),
+                                m('td', m('i.fa.fa-phone.fa-2x')),
                                 m('td.lead', '+94 91 5 621206')
                             ]),
                             m('tr', [
-                                m('td', m('i.fa.fa-envelope.fa-3x')),
-                                m('td.lead', 'support@wasanthaathukorala.com')
+                                m('td', m('i.fa.fa-envelope.fa-2x')),
+                                m('td.lead', m('a', {href: 'mailto:support@wasanthaathukorala.com'}, 'support@wasanthaathukorala.com'))
                             ]),
                             m('tr', [
-                                m('td', m('i.fa.fa-clock-o.fa-3x')),
+                                m('td', m('i.fa.fa-clock-o.fa-2x')),
                                 m('td.lead', 'Open 8am-5pm everyday except Mondays and Public Holidays')
                             ])
                         ])
