@@ -155,36 +155,20 @@ var ContactUs = {
                     m('table.hidden-table',
                         m('tbody', [
                             m('tr', [
-                                m('td', m('i.fa.fa-map-marker')),
-                                m('td', '"Wasantha", Thotupala Road')
+                                m('td', m('i.fa.fa-map-marker.fa-3x')),
+                                m('td.lead', ['"Wasantha", Thotupala Road', m('br'), 'Pitigala, Sri Lanka'])
                             ]),
                             m('tr', [
-                                m('td', ''),
-                                m('td', 'Pitigala, Sri Lanka')
+                                m('td', m('i.fa.fa-phone.fa-3x')),
+                                m('td.lead', '+94 91 5 621206')
                             ]),
                             m('tr', [
-                                m('td', ''),
-                                m('td', '')
+                                m('td', m('i.fa.fa-envelope.fa-3x')),
+                                m('td.lead', 'support@wasanthaathukorala.com')
                             ]),
                             m('tr', [
-                                m('td', m('i.fa.fa-phone')),
-                                m('td', '+94 91 5 621206')
-                            ]),
-                            m('tr', [
-                                m('td', ''),
-                                m('td', '')
-                            ]),
-                            m('tr', [
-                                m('td', m('i.fa.fa-envelope')),
-                                m('td', 'support@wasanthaathukorala.com')
-                            ]),
-                            m('tr', [
-                                m('td', ''),
-                                m('td', '')
-                            ]),
-                            m('tr', [
-                                m('td', m('i.fa.fa-clock-o')),
-                                m('td', 'Open 8am-5pm everyday except Mondays and Public Holidays')
+                                m('td', m('i.fa.fa-clock-o.fa-3x')),
+                                m('td.lead', 'Open 8am-5pm everyday except Mondays and Public Holidays')
                             ])
                         ])
                     )
