@@ -109,10 +109,11 @@ var ContactUs = {
             if (window.grecaptcha === undefined || passed_data.captcha !== null){
                 setTimeout(render_defer_captcha, 100, passed_data);
             }else{
-                passed_data.captcha = window.grecaptcha.render(document.getElementById('wimo'), {
+                passed_data.captcha = window.grecaptcha.render(document.getElementById('form_captcha'), {
                     'sitekey' : "6LdUxQsUAAAAABdymxIKFKrVW_0YG7C41AlsdNJZ",
                     'theme' : 'light'
                 });
+                document.getElementById('captcha_spinner').remove();
             }
         }
         this.renderCaptcha = function(element, isInit) {
@@ -131,11 +132,14 @@ var ContactUs = {
                 render_form_element('input[type="email"][placeholder="Email"]', ctrl.data.email, 'Email'),
                 render_form_element('input[type="text"][placeholder="Contact Number"]', ctrl.data.contact_num, 'Contact Number'),
                 render_form_element('textarea[placeholder="Message"]', ctrl.data.message, 'Message'),
-                m('div.row', m('.g-recaptcha#wimo', {config: ctrl.renderCaptcha})),
+                m('div.row', [
+                    m('.g-recaptcha#form_captcha', {config: ctrl.renderCaptcha}),
+                    m('i#captcha_spinner.fa.fa-spinner.fa-spin.fa-5x')
+                ]),
                 m('div.row',
                     m('div.text-center',
                         m('button.button', {onclick: ctrl.save}, [
-                            (ctrl.data.loading) ? m('i.fa fa-spinner fa-spin fa-fw', '') : '',
+                            (ctrl.data.loading) ? m('i.fa fa-spinner.fa-spin.fa-fw', '') : '',
                             m('span', 'Submit')
                         ])
                     )
