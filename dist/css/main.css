@@ -109,3 +109,11 @@ body:before {
     color: #ffffff;
     text-align: right;
 }
+
+.header .fa-spinner, .footer .fa-spinner {
+    color: #fff;
+}
+
+.header .fa-spinner {
+    padding-bottom: 1em;
+}
