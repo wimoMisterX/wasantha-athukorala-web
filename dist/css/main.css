@@ -117,3 +117,7 @@ body:before {
 .header .fa-spinner {
     padding-bottom: 1em;
 }
+
+.logo {
+    width: 30%;
+}
