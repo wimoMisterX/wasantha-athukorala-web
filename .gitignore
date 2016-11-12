@@ -38,6 +38,7 @@ jspm_packages
 
 # project files
 dist/js/main.js
+settings.json
 
 # vim swp file
 .*.sw*

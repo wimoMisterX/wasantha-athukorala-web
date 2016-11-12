@@ -48,8 +48,8 @@ html, body {
 #main {
     overflow: auto;
     padding-bottom: 180px; /* must be same height as the footer */
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 3em;
+    margin-bottom: 3rem;
 }
 body:before {
     content: "";
@@ -85,4 +85,35 @@ body:before {
 .footer .links a:last-child::after {
     content: "";
     padding: 0 0.4rem 0 0.8rem;
+}
+
+.fade-in {
+    -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 0.5s; /* Firefox < 16 */
+    -ms-animation: fadein 0.5s; /* Internet Explorer */
+    -o-animation: fadein 0.5s; /* Opera < 12.1 */
+    animation: fadein 0.5s;
+}
+
+.row-spacing {
+    margin-top: 2em;
+}
+
+@keyframes fadein {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.hidden-table {
+    border-collapse: unset;
+}
+
+.hidden-table tr:nth-of-type(even) {
+    background-color: transparent !important;
 }

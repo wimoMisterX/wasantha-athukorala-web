@@ -28,6 +28,8 @@
     "mithril": "^0.2.5",
     "morgan": "^1.7.0",
     "msx": "^0.4.1",
-    "nodemailer": "^2.6.4"
+    "nodemailer": "^2.6.4",
+    "request": "^2.78.0",
+    "serve-favicon": "^2.3.0"
   }
 }
