@@ -3,7 +3,7 @@ var m = require('mithril');
 function create_orbit_slides(slides){
     return slides.map(function(slide, slide_no){
         return m('li.orbit-slide', {className: (slide_no === 0) ? 'is-active' : ''}, [
-            m('img.orbit-image', {src: slide.image, style: {height: '800px'}}),
+            m('img.orbit-image', {src: slide.image, style: {height: '500px'}}),
             m('figcaption.orbit-caption', slide.caption)
         ]);
     });
@@ -22,7 +22,7 @@ function create_orbit_navigation(slides){
 
 var create_orbit = function (slides){
     return m('div.orbit#serviceOrbit', {'role': 'region', 'data-orbit': true}, [
-        m('ul.orbit-container', {style: {height: '800px'}}, [
+        m('ul.orbit-container', {style: {height: '500px'}}, [
             m('button.orbit-previous', [
                 m('span.show-for-sr', 'Previous Slide'),
                 m.trust('&#9664;&#xFE0E;')

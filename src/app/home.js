@@ -24,7 +24,7 @@ var Home = {
         return m('div', [
             m('h2.text-center', 'Welcome!'),
             m('p.lead', SAMPLE_PARAGRAPH),
-            m('div', {config: ctrl.render_orbit}, utils.create_orbit(IMAGE_SET))
+            m('div.columns.medium-10.medium-centered', {config: ctrl.render_orbit}, utils.create_orbit(IMAGE_SET))
         ]);
     }
 }

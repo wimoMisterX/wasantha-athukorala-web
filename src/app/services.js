@@ -36,7 +36,7 @@ function create_modal(title, details, slides){
     return m('.reveal-overlay', {style: {display: 'block'}}, [
         m('.large.reveal.fade-in', {style: {display: 'block'}}, [
             m('h3', title),
-            utils.create_orbit(slides),
+            m('div.columns.medium-10.medium-centered', utils.create_orbit(slides)),
             m('p.lead', details),
             m('button.close-button[type="button"]',{onclick: close_modal},
                 m('span', m.trust('&times;'))
