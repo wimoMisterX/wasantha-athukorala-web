@@ -8,7 +8,23 @@ var fs = require('fs');
 
 var settings = JSON.parse(fs.readFileSync('settings.json', 'utf8'));
 var app = express();
-var smtpTrans = nodemailer.createTransport('smtps://' + settings.mail.email  + ':' + settings.mail.password + '@smtp.gmail.com');
+var smtpTrans = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: settings.mail.email,
+        pass: settings.mail.password
+    }
+});
+
+smtpTrans.verify(function(error, succ){
+    if (error) {
+        console.log(error);
+    } else {
+        console.log('Server is ready to take our messages');
+    }
+})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -28,8 +44,8 @@ app.post('/contact/send-mail', (req, res) => {
             res.json({type: 'alert', message: 'Error occured, invalid captcha'});
         }else{
             var mailOpts = {
-                from: 'Wasantha Athukorala Website <wimoappmailer@gmail.com>',
-                to: '21440859@student.uwa.edu.au',
+                from: 'Wasantha Athukorala Website <support@wasanthaathukorala.com>',
+                to: 'wasantha@wasanthaathukorala.com',
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
                       'Contact number is ' + form_data.contact_num + '\n' +
