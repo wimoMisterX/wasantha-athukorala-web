@@ -13,11 +13,11 @@ var smtpTrans = nodemailer.createTransport('smtps://' + settings.mail.email  + '
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
-app.use(express.static('dist'));
-app.use(favicon(__dirname + '/dist/images/favicon.ico'));
+app.use(express.static(__dirname + '/src/assets'));
+app.use(favicon(__dirname + '/src/assets/images/favicon.ico'));
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/assets/index.html');
+    res.sendFile(__dirname + '/src/index.html');
 });
 
 app.post('/contact/send-mail', (req, res) => {

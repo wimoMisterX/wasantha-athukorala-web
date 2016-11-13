@@ -1,16 +1,15 @@
 var m = require('mithril');
 var _ = require('lodash');
-var google = window.google;
 
 function render_google_maps(element, isInit){
     if (isInit) return;
-    var uluru = {lat: 6.344370, lng: 80.222378};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var head_office = {lat: 6.344370, lng: 80.222378};
+    var map = new window.google.maps.Map(document.getElementById('map'), {
         zoom: 17,
-        center: uluru
+        center: head_office
     });
-    var marker = new google.maps.Marker({
-        position: uluru,
+    var marker = new window.google.maps.Marker({
+        position: head_office,
         map: map,
         title: 'Wasantha Athukorala Sole Propreitorship Head Office'
     });
@@ -149,26 +148,26 @@ var ContactUs = {
             m('h2.text-center', {style: {'margin-top': '1em', 'margin-bottom': '1em'}}, 'Our Head Office'),
             m('.row', [
                 m('.small-6.large-expand.columns', [
-                    m('#map.thumbnail', {config: render_google_maps, style:{height: '400px', width: '100%'}})
+                    m('#map.thumbnail', {config: render_google_maps, style:{height: '400px', width: '100%'}}, m('i#captcha_spinner.fa.fa-spinner.fa-spin.fa-3x'))
                 ]),
                 m('.small-6.large-expand.columns',
                     m('table.hidden-table',
                         m('tbody', [
                             m('tr', [
                                 m('td', m('i.fa.fa-map-marker.fa-2x')),
-                                m('td.lead', ['"Wasantha", Thotupala Road', m('br'), 'Pitigala, Sri Lanka'])
+                                m('td', ['"Wasantha", Thotupala Road', m('br'), 'Pitigala, Sri Lanka'])
                             ]),
                             m('tr', [
                                 m('td', m('i.fa.fa-phone.fa-2x')),
-                                m('td.lead', '+94 91 5 621206')
+                                m('td', '+94 91 5 621206')
                             ]),
                             m('tr', [
                                 m('td', m('i.fa.fa-envelope.fa-2x')),
-                                m('td.lead', m('a', {href: 'mailto:support@wasanthaathukorala.com'}, 'support@wasanthaathukorala.com'))
+                                m('td', m('a', {href: 'mailto:support@wasanthaathukorala.com'}, 'support@wasanthaathukorala.com'))
                             ]),
                             m('tr', [
                                 m('td', m('i.fa.fa-clock-o.fa-2x')),
-                                m('td.lead', 'Open 8am-5pm everyday except Mondays and Public Holidays')
+                                m('td', 'Open 8am-5pm everyday except Mondays and Public Holidays')
                             ])
                         ])
                     )

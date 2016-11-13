@@ -37,7 +37,7 @@ jspm_packages
 .node_repl_history
 
 # project files
-dist/js/main.js
+src/assets/js/main.js
 settings.json
 
 # vim swp file

@@ -1,13 +1,11 @@
 {
   "name": "wimo-mister-x",
   "version": "1.0.0",
-  "description": "",
+  "description": "Offical Website of Wasantha Athukorala Sole Propreitorship",
   "main": "index.js",
   "scripts": {
-    "build:msx": "msx -x jsx --no-precompile assets/js/ assets/js/",
-    "build:js": "browserify assets/js/main.js -o dist/js/main.js",
-    "build": "npm run build:msx && npm run build:js",
-    "watch:build": "msx --watch -x jsx --no-precompile assets/js/ assets/js/ && npm run build:js",
+    "build": "browserify src/app/main.js -o src/assets/js/main.js",
+    "watch": "watchify src/app/main.js -o src/assets/js/main.js -v",
     "start": "node index.js"
   },
   "repository": {
@@ -27,9 +25,9 @@
     "lodash": "^4.16.6",
     "mithril": "^0.2.5",
     "morgan": "^1.7.0",
-    "msx": "^0.4.1",
     "nodemailer": "^2.6.4",
     "request": "^2.78.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "watchify": "^3.7.0"
   }
 }
