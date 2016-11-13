@@ -33,6 +33,15 @@ smtpTrans.verify(function(error, succ){
     }
 })
 
+var client_email_response =
+    '***********************************\n' +
+    '     AUTO GENEREATED MESSAGE     \n' +
+    '***********************************\n\n' +
+    'Thanks for filling out our form!\n'+
+    'We will look over your message and get back to you by tomorrow.\n\n' +
+    'Best Regards,\n' +
+    'Wasantha Athukorala Sole Propreitorship Support Team\n\n';
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
@@ -50,8 +59,8 @@ app.post('/contact/send-mail', (req, res) => {
         if (err || !body.success){
             res.json({type: 'alert', message: 'Error occured, invalid captcha'});
         }else{
-            var mailOpts = {
-                from: 'Wasantha Athukorala Website ' + mail_us_to_email,
+            var company_mail = {
+                from: 'Wasantha Athukorala Website ' + mail_us_from_email,
                 to: mail_us_to_email,
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
@@ -59,11 +68,22 @@ app.post('/contact/send-mail', (req, res) => {
                       'Email is ' + form_data.email + '\n' +
                       'Message is ' + form_data.message
             }
-            smtpTrans.sendMail(mailOpts, function(error, response){
+            smtpTrans.sendMail(company_mail, function(error, response){
                 if (error){
                     res.json({type: 'alert', message: 'Error occured, message not sent'});
                 }else{
                     res.json({type: 'success', message: 'Message sent! Thank you!'});
+                }
+            });
+            var client_mail = {
+                from: 'Wasantha Athukorala Website ' + mail_us_from_email,
+                to: form_data.email,
+                subject: 'Thank you for your message!',
+                text: client_email_response
+            }
+            smtpTrans.sendMail(client_mail, function(error, response){
+                if (error){
+                    console.log(error);
                 }
             });
         }
