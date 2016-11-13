@@ -8,10 +8,10 @@ var AboutUs = {
             m('h2.text-center', 'Our Beginnings'),
             m('p.lead', SAMPLE_PARAGRAPH),
             m('hr'),
-            m('h2.text-center', 'Who are we?'),
+            m('h2.text-center', 'Our Team'),
             m('p.lead', SAMPLE_PARAGRAPH),
             m('hr'),
-            m('h2.text-center', 'What is our mission?'),
+            m('h2.text-center', 'Our mission'),
             m('p.lead', SAMPLE_PARAGRAPH)
         ])
     }

@@ -10,7 +10,7 @@ function menu_item(name, route, position){
 
 var menu_item_set = [
     {"label": "Home", "path": "/"},
-    {"label": "Our Services", "path": "/services"},
+    {"label": "Services", "path": "/services"},
     {"label": "About Us", "path": "/about"},
     {"label": "Contact Us", "path": "/contact"},
 ];

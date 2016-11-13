@@ -122,7 +122,7 @@ var ContactUs = {
     },
     view: function(ctrl){
         return m('div', [
-            m('h2.text-center', 'Feel the need to contact us?'),
+            m('h2.text-center', 'Need to contact us?'),
             m('form', [
                 (_.isEmpty(ctrl.data.post_result())) ? '' : m('div.row',
                     m('div', m('.callout.' + ctrl.data.post_result().type, m('p', ctrl.data.post_result().message)))
