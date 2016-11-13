@@ -6,7 +6,8 @@
   "scripts": {
     "build": "browserify -t brfs src/app/main.js -o src/assets/js/main.js",
     "watch": "watchify -t brfs src/app/main.js -o src/assets/js/main.js -v",
-    "start": "node index.js"
+    "start_dev": "NODE_ENV=dev node index.js",
+    "start": "NODE_ENV=prod node index.js"
   },
   "repository": {
     "type": "git",

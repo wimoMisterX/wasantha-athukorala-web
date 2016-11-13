@@ -6,7 +6,14 @@ var request = require('request');
 var favicon = require('serve-favicon');
 var fs = require('fs');
 
-var settings = JSON.parse(fs.readFileSync('settings.json', 'utf8'));
+var env = process.env.NODE_ENV;
+var settings_root = env === 'prod' ? 'settings/prod' : 'settings/dev';
+var settings = JSON.parse(fs.readFileSync(settings_root + '/server_settings.json', 'utf8'));
+var mail_us_from_email = env === 'prod' ? '<support@wasanthaathukorala.com>' : '<wimoappmailer@gmail.com>';
+var mail_us_to_email = env === 'prod' ? 'wasantha@wasanthaathukorala.com' : '21440859@student.uwa.edu.au';
+var index_html = env === 'prod' ? '/src/index_prod.html' : '/src/index_dev.html';
+fs.writeFile("settings/current_enviroment.txt", env);
+
 var app = express();
 var smtpTrans = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -33,7 +40,7 @@ app.use(express.static(__dirname + '/src/assets'));
 app.use(favicon(__dirname + '/src/assets/images/favicon.ico'));
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/src/index.html');
+    res.sendFile(__dirname + index_html);
 });
 
 app.post('/contact/send-mail', (req, res) => {
@@ -44,8 +51,8 @@ app.post('/contact/send-mail', (req, res) => {
             res.json({type: 'alert', message: 'Error occured, invalid captcha'});
         }else{
             var mailOpts = {
-                from: 'Wasantha Athukorala Website <support@wasanthaathukorala.com>',
-                to: 'wasantha@wasanthaathukorala.com',
+                from: 'Wasantha Athukorala Website ' + mail_us_to_email,
+                to: mail_us_to_email,
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
                       'Contact number is ' + form_data.contact_num + '\n' +
@@ -64,5 +71,5 @@ app.post('/contact/send-mail', (req, res) => {
 });
 
 app.listen(3001, function(){
-    console.log('Dev Server started at localhost:3001');
+    console.log((env == 'prod' ? 'Production ' : 'Development ') + 'Server started at localhost:3001');
 });
