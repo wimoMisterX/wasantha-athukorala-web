@@ -1,5 +1,8 @@
 var m = require('mithril');
 var _ = require('lodash');
+var fs = require('fs');
+
+var settings = JSON.parse(fs.readFileSync(__dirname + '/../../client_side_settings.json', 'utf8'));
 
 function render_google_maps(element, isInit){
     if (isInit) return;
@@ -109,7 +112,7 @@ var ContactUs = {
                 setTimeout(render_defer_captcha, 100, passed_data);
             }else{
                 passed_data.captcha = window.grecaptcha.render(document.getElementById('form_captcha'), {
-                    'sitekey' : "6LdUxQsUAAAAABdymxIKFKrVW_0YG7C41AlsdNJZ",
+                    'sitekey' : settings.recaptcha,
                     'theme' : 'light'
                 });
                 document.getElementById('captcha_spinner').remove();

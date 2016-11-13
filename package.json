@@ -4,8 +4,8 @@
   "description": "Offical Website of Wasantha Athukorala Sole Propreitorship",
   "main": "index.js",
   "scripts": {
-    "build": "browserify src/app/main.js -o src/assets/js/main.js",
-    "watch": "watchify src/app/main.js -o src/assets/js/main.js -v",
+    "build": "browserify -t brfs src/app/main.js -o src/assets/js/main.js",
+    "watch": "watchify -t brfs src/app/main.js -o src/assets/js/main.js -v",
     "start": "node index.js"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/wimoMisterX/wasantha-athukorala-web#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "brfs": "^1.4.3",
     "browserify": "^13.1.1",
     "express": "^4.14.0",
     "lodash": "^4.16.6",
