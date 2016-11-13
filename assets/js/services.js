@@ -21,19 +21,23 @@ function open_modal(title, details, slides){
     body.className = 'is-reveal-open';
 }
 
-function close_manual_modal(){
-    m.render(document.getElementById('modals'), null);
+var close_modal = function(){
+    setTimeout(function(){
+        m.render(document.getElementById('modals'), null);
+    }, 505);
+    var modal = document.getElementsByClassName("reveal")[0]
+    modal.className = "large reveal fade-out";
     var body = document.getElementsByTagName('body');
     body.className = '';
-}
+};
 
 function create_modal(title, details, slides){
     return m('.reveal-overlay', {style: {display: 'block'}}, [
-        m('.large.reveal', {style: {display: 'block'}}, [
+        m('.large.reveal.fade-in', {style: {display: 'block'}}, [
             m('h3', title),
             create_orbit(slides),
             m('p.lead', details),
-            m('button.close-button[type="button"]',{onclick: function(){close_manual_modal();}},
+            m('button.close-button[type="button"]',{onclick: close_modal},
                 m('span', m.trust('&times;'))
             )
         ])

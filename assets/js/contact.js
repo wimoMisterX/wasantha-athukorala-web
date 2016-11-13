@@ -134,7 +134,7 @@ var ContactUs = {
                 render_form_element('textarea[placeholder="Message"]', ctrl.data.message, 'Message'),
                 m('div.row', [
                     m('.g-recaptcha#form_captcha', {config: ctrl.renderCaptcha}),
-                    m('i#captcha_spinner.fa.fa-spinner.fa-spin.fa-5x')
+                    m('i#captcha_spinner.fa.fa-spinner.fa-spin.fa-3x')
                 ]),
                 m('div.row',
                     m('div.text-center',

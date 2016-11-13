@@ -24,7 +24,7 @@
 }
 .header-subnav li a {
     padding: 0.9rem 1rem;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #ffe;
     text-transform: uppercase;
     display: block;
@@ -48,8 +48,8 @@ html, body {
 #main {
     overflow: auto;
     padding-bottom: 100px; /* must be same height as the footer */
-    margin-top: 3em;
-    margin-bottom: 3rem;
+    margin-top: 2.5em;
+    margin-bottom: 2.5rem;
 }
 body:before {
     content: "";
@@ -82,18 +82,37 @@ body:before {
     animation: fadein 0.5s;
 }
 
+.fade-out {
+    -webkit-animation: fadeout 0.5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeout 0.5s; /* Firefox < 16 */
+    -ms-animation: fadeout 0.5s; /* Internet Explorer */
+    -o-animation: fadeout 0.5s; /* Opera < 12.1 */
+    animation: fadeout 0.5s;
+}
+
 .row-spacing {
     margin-top: 2em;
 }
 
 @keyframes fadein {
     from {
-        transform: translateY(100px);
+        transform: translateY(200px);
         opacity: 0;
     }
     to {
         transform: translateY(0px);
         opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(200px);
+        opacity: 0;
     }
 }
 
@@ -108,6 +127,8 @@ body:before {
 #copyright_notice{
     color: #ffffff;
     text-align: right;
+    font-size: 0.85rem;
+    margin-top: 0.4em;
 }
 
 .header .fa-spinner, .footer .fa-spinner {
@@ -115,7 +136,7 @@ body:before {
 }
 
 .header .fa-spinner {
-    padding-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .logo {
