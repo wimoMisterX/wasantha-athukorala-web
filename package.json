@@ -28,6 +28,7 @@
     "express": "^4.14.0",
     "flickity": "^2.0.5",
     "flickity-imagesloaded": "^2.0.0",
+    "image-preloader": "^1.1.1",
     "lodash": "^4.16.6",
     "mithril": "^0.2.5",
     "morgan": "^1.7.0",
