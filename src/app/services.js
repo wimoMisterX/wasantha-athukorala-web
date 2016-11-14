@@ -1,7 +1,5 @@
 var m = require('mithril');
-var utils = require('./utils.js');
-var $ = window.$;
-var Foundation = window.Foundation;
+var Flickity = require('flickity');
 
 var SAMPLE_PARAGRAPH = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
@@ -17,7 +15,10 @@ var SERVICE_SET = [
 
 function open_modal(title, details, slides){
     m.render(document.getElementById('modals'), create_modal(title, details, slides));
-    var orbit = new Foundation.Orbit($('#serviceOrbit'), {});
+    var flky = new Flickity('.carousel', {
+        adaptiveHeight: true,
+        wrapAround: true
+    });
     var body = document.getElementsByTagName('body');
     body.className = 'is-reveal-open';
 }
@@ -36,7 +37,11 @@ function create_modal(title, details, slides){
     return m('.reveal-overlay', {style: {display: 'block'}}, [
         m('.large.reveal.fade-in', {style: {display: 'block'}}, [
             m('h3', title),
-            m('div.columns.medium-10.medium-centered', utils.create_orbit(slides)),
+            m('.carousel',
+                slides.map(function(image){
+                    return m('img.thumbnail', {src: image.image});
+                })
+            ),
             m('p.lead', details),
             m('button.close-button[type="button"]',{onclick: close_modal},
                 m('span', m.trust('&times;'))

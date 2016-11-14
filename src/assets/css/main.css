@@ -155,7 +155,7 @@ body:before {
     font-size: 17px;
 }
 
-#serviceOrbit {
-    width: auto;
-    height: auto;
+.flickity-page-dots {
+    padding-bottom: 2em !important;
+    position:relative !important;
 }
