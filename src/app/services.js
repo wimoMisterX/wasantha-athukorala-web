@@ -19,8 +19,8 @@ function open_modal(title, details, slides){
         adaptiveHeight: true,
         wrapAround: true,
         autoPlay: true,
-	cellAlign: 'left',
-	imagesLoaded: true,
+        cellAlign: 'left',
+        imagesLoaded: true,
     });
     var body = document.getElementsByTagName('body');
     body.className = 'is-reveal-open';

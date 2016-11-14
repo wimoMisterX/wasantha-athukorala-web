@@ -19,8 +19,8 @@ var Home = {
                 adaptiveHeight: true,
                 wrapAround: true,
                 autoPlay: true,
-		cellAlign: 'left',
-		imagesLoaded: true,
+                cellAlign: 'left',
+                imagesLoaded: true,
             });
         }.bind(this)
     },
