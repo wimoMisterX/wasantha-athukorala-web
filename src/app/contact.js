@@ -11,16 +11,23 @@ if (env === 'prod'){
 
 function render_google_maps(element, isInit){
     if (isInit) return;
-    var head_office = {lat: 6.344370, lng: 80.222378};
-    var map = new window.google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
-        center: head_office
-    });
-    var marker = new window.google.maps.Marker({
-        position: head_office,
-        map: map,
-        title: 'Wasantha Athukorala Sole Propreitorship Head Office'
-    });
+    var set_google_map = function(){
+        if (window.google === undefined){
+            setTimeout(set_google_map, 100);
+        }else{
+            var head_office = {lat: 6.344370, lng: 80.222378};
+            var map = new window.google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: head_office
+            });
+            var marker = new window.google.maps.Marker({
+                position: head_office,
+                map: map,
+                title: 'Wasantha Athukorala Sole Propreitorship Head Office'
+            });
+        }
+    };
+    set_google_map();
 }
 
 function render_form_element(element, attr, title){
