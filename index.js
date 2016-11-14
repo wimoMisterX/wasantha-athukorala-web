@@ -35,7 +35,7 @@ smtpTrans.verify(function(error, succ){
 
 var client_email_response =
     '***********************************\n' +
-    '     AUTO GENEREATED MESSAGE     \n' +
+    'AUTO GENERATED MESSAGE     \n' +
     '***********************************\n\n' +
     'Thanks for filling out our form!\n'+
     'We will look over your message and get back to you by tomorrow.\n\n' +

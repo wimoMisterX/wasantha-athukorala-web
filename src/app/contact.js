@@ -154,11 +154,11 @@ var ContactUs = {
             ]),
             m('hr'),
             m('h2.text-center', {style: {'margin-top': '1em', 'margin-bottom': '1em'}}, 'Our Head Office'),
-            m('.row', [
-                m('.small-6.large-expand.columns', [
+            m('.row.smal-up-1.medium-up-2.large-up-2', [
+                m('.column', [
                     m('#map.thumbnail', {config: render_google_maps, style:{height: '400px', width: '100%'}}, m('i#captcha_spinner.fa.fa-spinner.fa-spin.fa-3x'))
                 ]),
-                m('.small-6.large-expand.columns',
+                m('.column',
                     m('table.hidden-table',
                         m('tbody', [
                             m('tr', [

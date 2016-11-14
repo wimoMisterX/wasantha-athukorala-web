@@ -50,12 +50,12 @@ var Services = {
         return m('div', [
             m('h2.text-center', 'We offer the following range of services'),
             m('#modals'),
-            m('.row.medium-2.medium-entered.columns#services_navigation',
-                m('table.hidden-table', m('tbody',
-                    SERVICE_SET.map(function(service){
-                        return m('tr', {align: "center"}, m('td', m('span.label', m('a.text-center', {href: '#' + service.title.toLowerCase().replace(' ', '_')}, service.title))));
-                    })
-                ))
+            m('.row#services_navigation',
+                SERVICE_SET.map(function(service){
+                    return  m('.columns.small-centered',
+                        m('span.label', m('a.text-center', {href: '#' + service.title.toLowerCase().replace(' ', '_')}, service.title))
+                    );
+                })
             ),
             SERVICE_SET.map(function(service){
                 return m('.row.row-spacing',
