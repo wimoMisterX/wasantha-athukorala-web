@@ -17,7 +17,8 @@ function open_modal(title, details, slides){
     m.render(document.getElementById('modals'), create_modal(title, details, slides));
     var flky = new Flickity('.carousel', {
         adaptiveHeight: true,
-        wrapAround: true
+        wrapAround: true,
+        autoPlay: true,
     });
     var body = document.getElementsByTagName('body');
     body.className = 'is-reveal-open';
@@ -26,7 +27,7 @@ function open_modal(title, details, slides){
 var close_modal = function(){
     setTimeout(function(){
         m.render(document.getElementById('modals'), null);
-    }, 505);
+    }, 400);
     var modal = document.getElementsByClassName("reveal")[0]
     modal.className = "large reveal fade-out";
     var body = document.getElementsByTagName('body');

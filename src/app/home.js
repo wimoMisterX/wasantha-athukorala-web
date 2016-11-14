@@ -17,7 +17,8 @@ var Home = {
             if (isInit) return;
             var flky = new Flickity('.carousel', {
                 adaptiveHeight: true,
-                wrapAround: true
+                wrapAround: true,
+                autoPlay: true,
             });
         }.bind(this)
     },
