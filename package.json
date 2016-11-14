@@ -7,7 +7,7 @@
     "build": "browserify -t brfs src/app/main.js -o src/assets/js/main.js",
     "watch": "watchify -t brfs src/app/main.js -o src/assets/js/main.js -v",
     "build:prod": "npm run build && uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js && csso src/assets/css/main.css --output src/assets/css/main.css",
-    "start_dev": "NODE_ENV=dev node index.js",
+    "start_dev": "NODE_ENV=dev PORT=3001 node index.js",
     "start": "NODE_ENV=prod node index.js"
   },
   "repository": {

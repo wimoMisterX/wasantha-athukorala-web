@@ -90,6 +90,6 @@ app.post('/contact/send-mail', (req, res) => {
     })
 });
 
-app.listen(3001, function(){
-    console.log((env == 'prod' ? 'Production ' : 'Development ') + 'Server started at localhost:3001');
+app.listen(parseInt(process.env.PORT), function(){
+    console.log((env == 'prod' ? 'Production ' : 'Development ') + 'Server started at localhost:' + process.env.PORT);
 });
