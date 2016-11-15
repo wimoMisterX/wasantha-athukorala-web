@@ -1,0 +1,21 @@
+apps:
+    - script: ./index.js
+      name: 'wasantha-athukorala-web-1'
+      env:
+          NODE_ENV: prod
+          PORT: 3001
+    - script: ./index.js
+      name: 'wasantha-athukorala-web-2'
+      env:
+          NODE_ENV: prod
+          PORT: 3002
+    - script: ./index.js
+      name: 'wasantha-athukorala-web-3'
+      env:
+          NODE_ENV: prod
+          PORT: 3003
+    - script: ./index.js
+      name: 'wasantha-athukorala-web-4'
+      env:
+          NODE_ENV: prod
+          PORT: 3004
