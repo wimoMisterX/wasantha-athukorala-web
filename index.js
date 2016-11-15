@@ -10,10 +10,9 @@ var fs = require('fs');
 var env = process.env.NODE_ENV;
 var settings_root = env === 'prod' ? 'settings/prod' : 'settings/dev';
 var settings = JSON.parse(fs.readFileSync(settings_root + '/server_settings.json', 'utf8'));
-var mail_us_from_email = env === 'prod' ? '<support@wasanthaathukorala.com>' : '<wimoappmailer@gmail.com>';
-var mail_us_to_email = env === 'prod' ? 'wasantha@wasanthaathukorala.com' : '21440859@student.uwa.edu.au';
+var support_email = env === 'prod' ? '<support@wasanthaathukorala.com>' : '<wimoappmailer@gmail.com>';
+var our_email = env === 'prod' ? 'wasantha@wasanthaathukorala.com' : '21440859@student.uwa.edu.au';
 var index_html = env === 'prod' ? '/src/index_prod.html' : '/src/index_dev.html';
-fs.writeFile("settings/current_enviroment.txt", env);
 
 var app = express();
 
@@ -76,8 +75,8 @@ app.post('/contact/send-mail', (req, res) => {
             res.json({type: 'alert', message: 'Error occured, invalid captcha'});
         }else{
             var company_mail = {
-                from: 'Wasantha Athukorala Website ' + mail_us_from_email,
-                to: mail_us_to_email,
+                from: 'Wasantha Athukorala Website ' + support_email,
+                to: our_email,
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
                       'Contact number is ' + form_data.contact_num + '\n' +
@@ -92,7 +91,7 @@ app.post('/contact/send-mail', (req, res) => {
                 }
             });
             var client_mail = {
-                from: 'Wasantha Athukorala Website ' + mail_us_from_email,
+                from: 'Wasantha Athukorala Website ' + support_email,
                 to: form_data.email,
                 subject: 'Thank you for your message!',
                 text: client_email_response

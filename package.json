@@ -4,13 +4,15 @@
   "description": "Offical Website of Wasantha Athukorala Sole Propreitorship",
   "main": "index.js",
   "scripts": {
-    "browserify:js": "browserify -t brfs src/app/js/main.js -o src/assets/js/main.js ",
+    "prod_browserify:js": "NODE_ENV=prod browserify -t brfs -t envify src/app/js/main.js -o src/assets/js/main.js ",
+    "dev_browserify:js": "NODE_ENV=dev browserify -t brfs -t envify src/app/js/main.js -o src/assets/js/main.js ",
     "uglify:js": "uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js",
     "csso:css": "csso src/app/css/main.css --output src/assets/css/main.css",
-    "build": "npm run browserify:js && npm run uglify:js && npm run csso:css",
-    "watch": "npm run build && watchify -t brfs src/app/js/main.js -o src/assets/js/main.js -v",
-    "start_dev": "npm run build && NODE_ENV=dev PORT=3001 node index.js",
-    "start": "npm run build && NODE_ENV=prod PORT=3001 node index.js"
+    "prod_build": "npm run prod_browserify:js && npm run uglify:js && npm run csso:css",
+    "dev_build": "npm run dev_browserify:js && npm run uglify:js && npm run csso:css",
+    "watch": "npm run dev_build && NODE_ENV=dev watchify -t brfs -t envify src/app/js/main.js -o src/assets/js/main.js -v",
+    "start_dev": "npm run dev_build && NODE_ENV=dev PORT=3001 node index.js",
+    "start": "npm run prod_build && NODE_ENV=prod PORT=3001 node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
     "brfs": "^1.4.3",
     "browserify": "^13.1.1",
     "csso": "^2.3.0",
+    "envify": "^3.4.1",
     "express": "^4.14.0",
     "flickity": "^2.0.5",
     "flickity-imagesloaded": "^2.0.0",
