@@ -1,6 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var nodemailer = require('nodemailer');
+var xoauth2 = require('xoauth2');
 var bodyParser = require('body-parser');
 var request = require('request');
 var favicon = require('serve-favicon');
@@ -15,15 +16,30 @@ var index_html = env === 'prod' ? '/src/index_prod.html' : '/src/index_dev.html'
 fs.writeFile("settings/current_enviroment.txt", env);
 
 var app = express();
-var smtpTrans = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true,
-    auth: {
-        user: settings.mail.email,
-        pass: settings.mail.password
-    }
-});
+
+if (env === 'prod'){
+    var smtpTrans = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            xoauth2: xoauth2.createXOAuth2Generator({
+                user: settings.mail.user,
+                clientId: settings.mail.clientId,
+                clientSecret: settings.mail.clientSecret,
+                refreshToken: settings.mail.refreshToken,
+                accessToken: settings.mail.accessToken
+            })
+        }
+    });
+}else{
+    var smtpTrans = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: settings.mail.email,
+            pass: settings.mail.password
+        }
+    });
+}
+
 
 smtpTrans.verify(function(error, succ){
     if (error) {
