@@ -38,6 +38,7 @@ jspm_packages
 
 # project files
 src/assets/js/main.js
+src/assets/css/main.css
 settings/
 
 # vim swp file

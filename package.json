@@ -4,11 +4,10 @@
   "description": "Offical Website of Wasantha Athukorala Sole Propreitorship",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -t brfs src/app/main.js -o src/assets/js/main.js",
-    "watch": "watchify -t brfs src/app/main.js -o src/assets/js/main.js -v",
-    "build:prod": "npm run build && uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js && csso src/assets/css/main.css --output src/assets/css/main.css",
+    "build": "browserify -t brfs src/app/js/main.js -o src/assets/js/main.js && uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js && csso src/app/css/main.css --output src/assets/css/main.css",
+    "watch": "watchify -t brfs src/app/js/main.js -o src/assets/js/main.js -v",
     "start_dev": "NODE_ENV=dev PORT=3001 node index.js",
-    "start": "NODE_ENV=prod node index.js"
+    "start": "NODE_ENV=prod PORT=3001 node index.js"
   },
   "repository": {
     "type": "git",

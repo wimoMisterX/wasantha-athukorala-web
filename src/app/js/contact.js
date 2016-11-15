@@ -2,11 +2,11 @@ var m = require('mithril');
 var _ = require('lodash');
 var fs = require('fs');
 
-var env = fs.readFileSync(__dirname + '/../../settings/current_enviroment.txt', 'utf8');
+var env = fs.readFileSync(__dirname + '/../../../settings/current_enviroment.txt', 'utf8');
 if (env === 'prod'){
-    var settings = JSON.parse(fs.readFileSync(__dirname + '/../../settings/prod/client_settings.json', 'utf8'));
+    var settings = JSON.parse(fs.readFileSync(__dirname + '/../../../settings/prod/client_settings.json', 'utf8'));
 }else{
-    var settings = JSON.parse(fs.readFileSync(__dirname + '/../../settings/dev/client_settings.json', 'utf8'));
+    var settings = JSON.parse(fs.readFileSync(__dirname + '/../../../settings/dev/client_settings.json', 'utf8'));
 }
 
 function render_google_maps(element, isInit){
