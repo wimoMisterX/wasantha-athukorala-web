@@ -18,9 +18,43 @@ body:before {
     margin-bottom: 2.5rem;
 }
 
-.logo {
-    width: 40%;
+@media only screen {
+    .logo {
+        width: 15em;
+    }
+    #copyright_notice{
+        text-align: center;
+    }
 }
+
+@media only screen and (min-width: 40.063em) {
+    .logo {
+        width: 20em;
+    }
+    #copyright_notice{
+        text-align: right;
+    }
+    .header-subnav li{
+        display: inline-block !important;
+        float: none !important;
+    }
+    .header-subnav li a {
+        padding: 1em 2.5em 1em 2.5em !important;
+    }
+}
+
+@media only screen and (min-width: 64.063em) {
+    .logo {
+        width: 25em;
+    }
+    #copyright_notice{
+        text-align: right;
+    }
+    .header-subnav li a {
+        padding: 1em 5em 1em 5em !important;
+    }
+}
+
 .header {
     text-align: center;
     text-transform: uppercase;
@@ -36,12 +70,11 @@ body:before {
     padding-top: 1rem;
     display: block;
 }
-.header-subnav div a {
-    padding: 0.9rem 1rem;
-    font-size: 1rem;
+
+.header-subnav li a {
+    font-size: 1em;
     color: #ffe;
     text-transform: uppercase;
-    display: block;
     font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.35s ease-in-out;
@@ -49,10 +82,10 @@ body:before {
     border-width: 1px;
     border-color: rgba(250, 250, 250, 0.15);
 }
-.header-subnav div a.is-active {
+.header-subnav li a.is-active {
     background: rgba(250, 250, 250, 0.15);
 }
-.header-subnav div a:hover {
+.header-subnav li a:hover {
     background: rgba(250, 250, 250, 0.15);
     transition: all 0.35s ease-in-out;
 }
@@ -70,10 +103,6 @@ body:before {
     clear: both;
     padding: 1.75em 0;
 }
-#footer-menu-items .column{
-    width: auto;
-    float: left;
-}
 #footer-menu-items a {
     color: #ffffff;
     text-align: center;
@@ -82,13 +111,6 @@ body:before {
     color: #ffffff;
     font-size: 0.85rem;
     margin-top: 0.4em;
-    text-align: center;
-}
-
-@media screen and (min-width: 40em){
-    #copyright_notice{
-        text-align: right;
-    }
 }
 
 .fade-in {
