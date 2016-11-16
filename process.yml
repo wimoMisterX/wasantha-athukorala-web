@@ -1,21 +1,29 @@
 apps:
     - script: ./index.js
       name: 'wasantha-athukorala-web-1'
+      instances: 2
+      exec_mode: cluster
       env:
           NODE_ENV: prod
           PORT: 3001
     - script: ./index.js
       name: 'wasantha-athukorala-web-2'
+      instances: 2
+      exec_mode: cluster
       env:
           NODE_ENV: prod
           PORT: 3002
     - script: ./index.js
       name: 'wasantha-athukorala-web-3'
+      instances: 2
+      exec_mode: cluster
       env:
           NODE_ENV: prod
           PORT: 3003
     - script: ./index.js
       name: 'wasantha-athukorala-web-4'
+      instances: 2
+      exec_mode: cluster
       env:
           NODE_ENV: prod
           PORT: 3004

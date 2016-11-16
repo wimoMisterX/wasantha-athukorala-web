@@ -5,6 +5,7 @@
 nvm use --lts
 
 # update repo
+git checkout .
 git checkout master
 git pull origin master
 
