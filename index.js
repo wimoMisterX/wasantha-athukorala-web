@@ -5,6 +5,7 @@ var xoauth2 = require('xoauth2');
 var bodyParser = require('body-parser');
 var request = require('request');
 var favicon = require('serve-favicon');
+var hogan = require('hogan.js');
 var fs = require('fs');
 
 var env = process.env.NODE_ENV;
@@ -48,15 +49,6 @@ smtpTrans.verify(function(error, succ){
     }
 })
 
-var client_email_response =
-    '***********************************\n' +
-    'AUTO GENERATED MESSAGE     \n' +
-    '***********************************\n\n' +
-    'Thanks for filling out our form!\n'+
-    'We will look over your message and get back to you by tomorrow.\n\n' +
-    'Best Regards,\n' +
-    'Wasantha Athukorala Sole Propreitorship Support Team\n\n';
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(morgan('dev'));
@@ -79,7 +71,7 @@ app.post('/contact/send-mail', (req, res) => {
                 to: our_email,
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
-                      'Contact number is ' + form_data.contact_num + '\n' +
+                      'Contact number is ' + (form_data.contact_num || '-') + '\n' +
                       'Email is ' + form_data.email + '\n' +
                       'Message is ' + form_data.message
             }
@@ -90,11 +82,13 @@ app.post('/contact/send-mail', (req, res) => {
                     res.json({type: 'success', message: 'Message sent! Thank you!'});
                 }
             });
+            var email_file = fs.readFileSync(__dirname + '/src/thank_you_email.html', 'utf8');
+            var email_template = hogan.compile(email_file);
             var client_mail = {
-                from: 'Wasantha Athukorala Website ' + support_email,
+                from: 'Wasantha Athukorala Sole Propreitorship ' + support_email,
                 to: form_data.email,
-                subject: 'Thank you for your message!',
-                text: client_email_response
+                subject: 'Enquriy at Wasantha Athukorala Sole Propreitorship',
+                html: email_template.render({name: form_data.name})
             }
             smtpTrans.sendMail(client_mail, function(error, response){
                 if (error){
