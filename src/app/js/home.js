@@ -1,4 +1,5 @@
 var m = require('mithril');
+var Swiper = require('swiper');
 var Flickity = require('flickity-imagesloaded');
 
 var SAMPLE_PARAGRAPH = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
@@ -15,24 +16,34 @@ var Home = {
     controller: function(){
         this.render_flicky = function (ele, isInit){
             if (isInit) return;
-            var flky = new Flickity('.carousel', {
-                adaptiveHeight: true,
-                wrapAround: true,
-                autoPlay: true,
-                cellAlign: 'left',
-                imagesLoaded: true,
+            var mySwiper = new Swiper('.swiper-container', {
+                loop: true,
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                paginationClickable: true,
+				autoHeight: true,
+                keyboardControl: true,
             });
         }.bind(this)
     },
     view: function(ctrl){
         return m('div', [
             m('h2.text-center', 'Welcome!'),
-            m('p.lead', SAMPLE_PARAGRAPH),
-            m('.carousel', {config: ctrl.render_flicky},
-                IMAGE_SET.map(function(image){
-                    return m('img.thumbnail', {src: image.image});
-                })
-            )
+            m('p.lead.text-justify', SAMPLE_PARAGRAPH),
+            m('.swiper-container', {config: ctrl.render_flicky}, [
+                m('.swiper-wrapper',
+                  IMAGE_SET.map(function(image){
+                    return m('.swiper-slide', m('.wimo', [
+                        m('.title', image.caption),
+                        m('img', {src: image.image, alt: image.caption})
+                    ]));
+                  })
+                ),
+                m('.swiper-pagination'),
+                m('.swiper-button-prev'),
+                m('.swiper-button-next')
+            ])
         ]);
     }
 }

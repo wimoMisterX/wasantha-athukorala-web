@@ -41,6 +41,7 @@
     "nodemailer": "^2.6.4",
     "request": "^2.78.0",
     "serve-favicon": "^2.3.0",
+    "swiper": "^3.4.0",
     "uglify-js": "^2.7.4",
     "watchify": "^3.7.0",
     "xoauth2": "^1.2.0"
