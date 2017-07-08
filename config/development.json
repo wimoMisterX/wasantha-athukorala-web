@@ -1,0 +1,14 @@
+{
+    "Mail": {
+        "service": "gmail",
+        "email": "wimoappmailer@gmail.com",
+        "password": "WimoAppMailer123",
+        "our_email": "21440859@student.uwa.edu.au",
+        "support_email": "<wimoappmailer@gmail.com>"
+    },
+    "Recaptcha": {
+        "client_key": "6LdUxQsUAAAAABdymxIKFKrVW_0YG7C41AlsdNJZ",
+        "server_key": "6LdUxQsUAAAAAMYOpf29W1bmnA68JqXeGGo_BoEB"
+    },
+    "google_maps_api_key": "AIzaSyAOfn65CqCTRLI26iL9x1LxIbj7GQm7rTg"
+}

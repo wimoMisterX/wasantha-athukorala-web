@@ -7,39 +7,31 @@ var request = require('request');
 var favicon = require('serve-favicon');
 var hogan = require('hogan.js');
 var fs = require('fs');
-
-var env = process.env.NODE_ENV;
-var settings_root = env === 'prod' ? 'settings/prod' : 'settings/dev';
-var settings = JSON.parse(fs.readFileSync(settings_root + '/server_settings.json', 'utf8'));
-var support_email = env === 'prod' ? '<support@wasanthaathukorala.com>' : '<wimoappmailer@gmail.com>';
-var our_email = env === 'prod' ? 'wasantha@wasanthaathukorala.com' : '21440859@student.uwa.edu.au';
-var index_html = env === 'prod' ? '/src/index_prod.html' : '/src/index_dev.html';
+var config = require('config');
 
 var app = express();
 
-if (env === 'prod'){
-    var smtpTrans = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            xoauth2: xoauth2.createXOAuth2Generator({
-                user: settings.mail.user,
-                clientId: settings.mail.clientId,
-                clientSecret: settings.mail.clientSecret,
-                refreshToken: settings.mail.refreshToken,
-                accessToken: settings.mail.accessToken
-            })
-        }
-    });
+if (config.has('Mail.email') && config.has('Mail.password')){
+    var auth_settings = {
+        user: config.Mail.email,
+        pass: config.Mail.password
+    };
 }else{
-    var smtpTrans = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: settings.mail.email,
-            pass: settings.mail.password
-        }
-    });
+    var auth_settings = {
+        xoauth2: xoauth2.createXOAuth2Generator({
+            user: config.Mail.user,
+            clientId: config.Mail.clientId,
+            clientSecret: config.Mail.clientSecret,
+            refreshToken: config.Mail.refreshToken,
+            accessToken: config.Mail.accessToken
+        })
+    };
 }
 
+var smtpTrans = nodemailer.createTransport({
+    service: config.Mail.service,
+    auth: auth_settings,
+});
 
 smtpTrans.verify(function(error, succ){
     if (error) {
@@ -56,19 +48,24 @@ app.use(express.static(__dirname + '/src/assets'));
 app.use(favicon(__dirname + '/src/assets/images/favicon.ico'));
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + index_html);
+    var spa_file = fs.readFileSync(__dirname + '/src/index.html', 'utf8');
+    var spa_template = hogan.compile(spa_file);
+    res.send(spa_template.render({
+        google_maps_api_key: config.google_maps_api_key,
+        recaptcha_client_key: config.Recaptcha.client_key,
+    }));
 });
 
 app.post('/contact/send-mail', (req, res) => {
     var form_data = req.body;
-    request.post('https://www.google.com/recaptcha/api/siteverify', {form: {secret: settings.recaptcha.secret, response: req.body.captcha}}, function(err, httpResponse, body){
+    request.post('https://www.google.com/recaptcha/api/siteverify', {form: {secret: config.Recaptcha.server_key, response: req.body.captcha}}, function(err, httpResponse, body){
         body = JSON.parse(body);
         if (err || !body.success){
             res.json({type: 'alert', message: 'Error occured, invalid captcha'});
         }else{
             var company_mail = {
-                from: 'Wasantha Athukorala Website ' + support_email,
-                to: our_email,
+                from: 'Wasantha Athukorala Website ' + config.Mail.support_email,
+                to: config.Mail.our_email,
                 subject: 'You have got a new message!',
                 text: 'The following message was sent by ' + form_data.name + '\n' +
                       'Contact number is ' + (form_data.contact_num || '-') + '\n' +
@@ -85,7 +82,7 @@ app.post('/contact/send-mail', (req, res) => {
             var email_file = fs.readFileSync(__dirname + '/src/thank_you_email.html', 'utf8');
             var email_template = hogan.compile(email_file);
             var client_mail = {
-                from: 'Wasantha Athukorala Sole Propreitorship ' + support_email,
+                from: 'Wasantha Athukorala Sole Propreitorship ' + config.Mail.support_email,
                 to: form_data.email,
                 subject: 'Enquriy at Wasantha Athukorala Sole Propreitorship',
                 html: email_template.render({name: form_data.name})
@@ -99,6 +96,6 @@ app.post('/contact/send-mail', (req, res) => {
     })
 });
 
-app.listen(parseInt(process.env.PORT), function(){
-    console.log((env == 'prod' ? 'Production ' : 'Development ') + 'Server started at localhost:' + process.env.PORT);
+app.listen(config.port, function(){
+    console.log(config.util.getEnv('NODE_ENV') + ' server started at localhost:' + config.port);
 });

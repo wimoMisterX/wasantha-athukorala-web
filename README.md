@@ -4,23 +4,25 @@ This is my first Mithirl SPA. Please be kind ;)
 
 ## Directory Structure
 ```
+package.json
+index.js
 src/
+| |- templates/
 | |- app/
 | |- assets/
 | | |- js/
 | | |- css/
 | | |- images/
-| | |- fonts/
-| |- index.html
-index.js
-settings.json
-package.json
+config/
+| |- default.json
+| |- development.json
+| |- production.json
 ```
 * `src/app` - App realated javascript files with an entry file for Browserify to modularise the files.
 * `src/assets` - Static files with each file in specific folder
-* `src/index.html` - Single page html file
+* `src/templates` - Required templates
 * `index.js` - Express server
-* `settings.json` - Secret settings files used by `index.js`
+* `config` - configs
 
 ## Setup
 1. Clone repo
@@ -31,4 +33,4 @@ package.json
 ## NPM Commands
 * `npm run watch` - Live rebuilding javascript bundle
 * `npm run build` - Build javascript bundle
-* `npm start` - Starts the server at port 3001
+* `npm start` - Starts the server at port 3000

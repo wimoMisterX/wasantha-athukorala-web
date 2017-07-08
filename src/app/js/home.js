@@ -15,13 +15,13 @@ var Home = {
     controller: function(){
         this.render_flicky = function (ele, isInit){
             if (isInit) return;
-            var flky = new Flickity('.carousel', {
+            new Flickity('.carousel', {
                 adaptiveHeight: true,
                 wrapAround: true,
                 autoPlay: true,
                 cellAlign: 'left',
                 imagesLoaded: true,
-            });
+            })
         }.bind(this)
     },
     view: function(ctrl){

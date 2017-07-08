@@ -1,11 +1,5 @@
 var m = require('mithril');
 var _ = require('lodash');
-var fs = require('fs');
-
-var env = process.env.NODE_ENV;
-var dev_settings = JSON.parse(fs.readFileSync(__dirname + '/../../../settings/dev/client_settings.json', 'utf8'));
-var prod_settings = JSON.parse(fs.readFileSync(__dirname + '/../../../settings/prod/client_settings.json', 'utf8'));
-var settings = env == 'dev' ? dev_settings : prod_settings;
 
 function render_google_maps(element, isInit){
     if (isInit) return;
@@ -18,7 +12,7 @@ function render_google_maps(element, isInit){
                 zoom: 17,
                 center: head_office
             });
-            var marker = new window.google.maps.Marker({
+            new window.google.maps.Marker({
                 position: head_office,
                 map: map,
                 title: 'Wasantha Athukorala Sole Propreitorship Head Office'
@@ -122,7 +116,7 @@ var ContactUs = {
                 setTimeout(render_defer_captcha, 100, passed_data);
             }else{
                 passed_data.captcha = window.grecaptcha.render(document.getElementById('form_captcha'), {
-                    'sitekey' : settings.recaptcha,
+                    'sitekey': document.querySelector('script[data-id="bundlejs"][data-recaptcha-client-key]').getAttribute('data-recaptcha-client-key'),
                     'theme' : 'light'
                 });
                 document.getElementById('captcha_spinner').remove();

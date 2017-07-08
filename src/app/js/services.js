@@ -15,7 +15,7 @@ var SERVICE_SET = [
 
 function open_modal(title, details, slides){
     m.render(document.getElementById('modals'), create_modal(title, details, slides));
-    var flky = new Flickity('.carousel', {
+    new Flickity('.carousel', {
         adaptiveHeight: true,
         wrapAround: true,
         autoPlay: true,
