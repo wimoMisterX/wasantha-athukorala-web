@@ -23,7 +23,7 @@
   "homepage": "https://github.com/wimoMisterX/wasantha-athukorala-web#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "browserify": "^13.1.1",
+    "browserify": "^14.4.0",
     "config": "^1.26.1",
     "csso": "^2.3.0",
     "express": "^4.14.0",
@@ -34,13 +34,13 @@
     "lodash": "^4.16.6",
     "mithril": "^0.2.5",
     "morgan": "^1.7.0",
-    "nodemailer": "^2.6.4",
+    "nodemailer": "^4.0.1",
     "request": "^2.78.0",
     "serve-favicon": "^2.3.0",
-    "uglify-js": "^2.7.4",
+    "uglify-js": "^3.0.24",
     "xoauth2": "^1.2.0"
   },
-  "dev-dependencies": {
+  "devDependencies": {
     "watchify": "^3.7.0"
   }
 }
