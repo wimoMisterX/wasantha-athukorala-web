@@ -96,6 +96,6 @@ app.post('/contact/send-mail', (req, res) => {
     })
 });
 
-app.listen(config.port, function(){
-    console.log(config.util.getEnv('NODE_ENV') + ' server started at localhost:' + config.port);
+app.listen(process.env.PORT, function(){
+    console.log(config.util.getEnv('NODE_ENV') + ' server started at localhost:' + process.env.PORT);
 });
