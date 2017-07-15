@@ -52,6 +52,7 @@ app.get('*', (req, res) => {
     res.send(spa_template.render({
         google_maps_api_key: config.google_maps_api_key,
         recaptcha_client_key: config.Recaptcha.client_key,
+        current_year: new Date().getFullYear(),
     }));
 });
 
