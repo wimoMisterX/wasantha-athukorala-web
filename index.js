@@ -23,7 +23,6 @@ if (config.has('Mail.email') && config.has('Mail.password')){
             clientId: config.Mail.clientId,
             clientSecret: config.Mail.clientSecret,
             refreshToken: config.Mail.refreshToken,
-            accessToken: config.Mail.accessToken
         })
     };
 }
