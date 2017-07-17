@@ -1,7 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
 var nodemailer = require('nodemailer');
-var xoauth2 = require('xoauth2');
 var bodyParser = require('body-parser');
 var request = require('request');
 var favicon = require('serve-favicon');
@@ -18,12 +17,11 @@ if (config.has('Mail.email') && config.has('Mail.password')){
     };
 }else{
     var auth_settings = {
-        xoauth2: xoauth2.createXOAuth2Generator({
-            user: config.Mail.user,
-            clientId: config.Mail.clientId,
-            clientSecret: config.Mail.clientSecret,
-            refreshToken: config.Mail.refreshToken,
-        })
+        type: 'OAuth2',
+        user: config.Mail.user,
+        clientId: config.Mail.clientId,
+        clientSecret: config.Mail.clientSecret,
+        refreshToken: config.Mail.refreshToken,
     };
 }
 
