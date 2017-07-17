@@ -1,5 +1,6 @@
 var m = require('mithril');
 var _ = require('lodash');
+var config = require('config');
 
 function render_google_maps(element, isInit){
     if (isInit) return;
@@ -116,7 +117,7 @@ var ContactUs = {
                 setTimeout(render_defer_captcha, 100, passed_data);
             }else{
                 passed_data.captcha = window.grecaptcha.render(document.getElementById('form_captcha'), {
-                    'sitekey': document.querySelector('script[data-id="bundlejs"][data-recaptcha-client-key]').getAttribute('data-recaptcha-client-key'),
+                    'sitekey': config.get('Client.recaptcha_client_key'),
                     'theme' : 'light'
                 });
                 document.getElementById('captcha_spinner').remove();

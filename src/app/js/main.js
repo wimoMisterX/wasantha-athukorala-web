@@ -1,6 +1,7 @@
 var m = require('mithril');
 var image_preloader = require('image-preloader');
 var preloader = new image_preloader;
+var fs = require('fs');
 
 var contact = require('./contact.js');
 var services = require('./services.js');
@@ -8,7 +9,9 @@ var menu = require('./menu.js');
 var about = require('./about.js');
 var home = require('./home.js');
 
-var image_set = ['images/hotel-1.jpg', 'images/hotel-2.jpg', 'images/sample.jpg', 'images/service-station.jpg', 'images/service-station-2.jpg', 'images/shopping-1.jpg', 'images/shopping-2.jpg'];
+var image_set = fs.readdirSync(__dirname + '/../../assets/images').map(function(file) {
+    return 'images/' + file;
+});
 
 preloader.preload.apply(this, image_set);
 m.route.mode  = "pathname";

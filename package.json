@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Offical Website of Wasantha Athukorala Sole Propreitorship",
   "main": "index.js",
+  "browserify": {
+    "transform": [
+      "brfs",
+      "config-browserify"
+    ]
+  },
   "scripts": {
     "browserify:js": "browserify src/app/js/main.js -o src/assets/js/main.js ",
     "uglify:js": "uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js",
@@ -23,9 +29,11 @@
   "homepage": "https://github.com/wimoMisterX/wasantha-athukorala-web#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "brfs": "^1.4.3",
     "browserify": "^14.4.0",
     "config": "^1.26.1",
-    "csso": "^2.3.0",
+    "config-browserify": "^1.0.5",
+    "csso-cli": "^1.0.0",
     "express": "^4.14.0",
     "flickity": "^2.0.5",
     "flickity-imagesloaded": "^2.0.0",

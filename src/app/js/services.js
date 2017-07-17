@@ -1,17 +1,6 @@
 var m = require('mithril');
 var Flickity = require('flickity-imagesloaded');
-
-var SAMPLE_PARAGRAPH = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-
-var SERVICE_SET = [
-    {title: 'Service Centres', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/service-station.jpg', caption: 'abc'}, {image: 'images/service-station-2.jpg', caption: 'cba'}]},
-    {title: 'Hotels and Restaurants', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/hotel-1.jpg', caption: 'abc'}, {image: 'images/hotel-2.jpg', caption: 'cba'}]},
-    {title: 'Shopping Complexes', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/shopping-1.jpg', caption: 'abc'}, {image: 'images/shopping-2.jpg', caption: 'cba'}]},
-    {title: 'Tea Estates', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/service-station.jpg', caption: 'abc'}, {image: 'images/service-station-2.jpg', caption: 'cba'}]},
-    {title: 'Warehousing Services', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/service-station.jpg', caption: 'abc'}, {image: 'images/service-station-2.jpg', caption: 'cba'}]},
-    {title: 'Vehicle Transport', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/service-station.jpg', caption: 'abc'}, {image: 'images/service-station-2.jpg', caption: 'cba'}]},
-    {title: 'Heavy Machinery Renting', summary: SAMPLE_PARAGRAPH, front_image: 'images/sample.jpg', details: SAMPLE_PARAGRAPH, slides: [{image: 'images/service-station.jpg', caption: 'abc'}, {image: 'images/service-station-2.jpg', caption: 'cba'}]},
-];
+var services_content = require('./content').services_content;
 
 function open_modal(title, details, slides){
     m.render(document.getElementById('modals'), create_modal(title, details, slides));
@@ -59,13 +48,13 @@ var Services = {
             m('h2.text-center', 'We offer the following range of services'),
             m('#modals'),
             m('.row#services_navigation',
-                SERVICE_SET.map(function(service){
+                services_content.services.map(function(service){
                     return  m('.columns.small-centered',
                         m('span.label', m('a.text-center', {href: '#' + service.title.toLowerCase().replace(' ', '_')}, service.title))
                     );
                 })
             ),
-            SERVICE_SET.map(function(service){
+            services_content.services.map(function(service){
                 return m('.row.row-spacing',
                     m('.callout.secondary#'+ service.title.toLowerCase().replace(' ', '_'),
                         m('.row', [
