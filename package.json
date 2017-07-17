@@ -10,11 +10,11 @@
     ]
   },
   "scripts": {
-    "browserify:js": "browserify src/app/js/main.js -o src/assets/js/main.js ",
-    "uglify:js": "uglifyjs src/assets/js/main.js -c -m -o src/assets/js/main.js",
-    "csso:css": "csso src/app/css/main.css --output src/assets/css/main.css",
+    "browserify:js": "browserify src/app/js/main.js -o src/assets/js/main.js",
+    "uglify:js": "uglifyjs src/assets/js/main.js -c -m --ie8 -o src/assets/js/main.js --timings",
+    "csso:css": "csso src/app/css/main.css src/assets/css/main.css --stat",
     "build": "npm run browserify:js && npm run uglify:js && npm run csso:css",
-    "watch": "npm run build && watchify src/app/js/main.js -o src/assets/js/main.js -v",
+    "watch": "watchify src/app/js/main.js -o src/assets/js/main.js --debug --verbose",
     "start": "npm run build && NODE_ENV=development PORT=3000 node index.js"
   },
   "repository": {
