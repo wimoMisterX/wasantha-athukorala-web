@@ -24,14 +24,21 @@ smtpTrans.verify(function(error, succ){
     }
 })
 
-app.get('*', (req, res) => {
+function loadSPA(req, res) {
     var spa_file = fs.readFileSync(__dirname + '/src/index.html', 'utf8');
     var spa_template = hogan.compile(spa_file);
     res.send(spa_template.render({
         google_maps_api_key: config.google_maps_api_key,
         current_year: new Date().getFullYear(),
+        version: process.env.WEBSITE_VERSION,
     }));
-});
+}
+
+app.get('/', loadSPA);
+app.get('/services', loadSPA);
+app.get('/services', loadSPA);
+app.get('/about', loadSPA);
+app.get('/contact', loadSPA);
 
 app.post('/contact/send-mail', (req, res) => {
     var form_data = req.body;
